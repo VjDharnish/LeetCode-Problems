@@ -1,0 +1,71 @@
+class ArrayList{
+	private int arr[] = new int[5];
+	private int index=0;
+	public void add(int value) {
+		if(index==arr.length) {
+			int temp[] = arr.clone();
+			arr = new int[arr.length +5];
+			for(int i=0;i<temp.length;i++) 
+			arr[i]= temp[i];
+		}
+		arr[index++] = value;
+		
+	}
+	public void remove() {
+		if(index == 0) {
+			System.out.println("No Elements to remove");
+			return;
+		}
+		int temp[] = arr.clone();
+		arr = new int[arr.length-1];
+		for(int i=0;i<temp.length-1;i++) {
+			arr[i] = temp[i];			
+		}
+		index--;
+	}
+	public int size() {
+		return index;
+	}
+	public void print() {
+		System.out.print("[");
+		for(int i=0;i<index;i++) {
+			if(i==index-1) {
+				System.out.println(arr[i]+"]");
+				break;
+			}
+			System.out.print(arr[i]+" ,");
+		}
+	}
+}
+public class ArrayListDemo {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList array = new ArrayList();
+		array.remove();
+		array.add(1);
+		array.add(2);
+		array.remove();
+		array.add(21);
+		array.add(34);
+		array.add(12);
+		array.add(52);
+		array.add(5);
+		array.add(5);
+		array.print();
+		System.out.println(array.size());
+		array.add(34);
+		array.add(12);
+		array.add(52);
+		array.add(5);
+		array.add(5);
+		array.print();
+		System.out.println(array.size());
+		array.remove();
+		array.remove();	
+		array.print();
+		array.size();
+		System.out.println(array.size());
+
+	}
+
+}
