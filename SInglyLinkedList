@@ -1,0 +1,100 @@
+class LinkedList{
+	Node head;
+	class Node{
+		 Node(int val) {
+			// TODO Auto-generated constructor stub
+			data = val;
+		}
+		int data;
+		Node next;
+	}
+	LinkedList(){
+		head= null;
+	}
+	public void insert(int val) {
+		Node newNode = new Node(val);
+	
+		if(head ==null) {
+			head= newNode;
+		}
+		else {
+		Node ptr = head;
+		while(ptr.next!=null) {
+			ptr=ptr.next;
+		}
+		newNode.next = ptr.next;
+		ptr.next = newNode;
+		}
+	}
+	public void insert(int pos,int val) {
+	
+		Node newNode = new Node(val);
+		if(head ==null) {
+			head= newNode;
+		}
+		else if(pos ==0) {
+			newNode.next= head;
+			head= newNode;
+		}
+		else{
+			Node ptr = head;
+			for(int i=0;i<pos-1;i++) {
+				ptr=ptr.next;
+			}
+			newNode.next = ptr.next;
+			ptr.next = newNode;		
+		}		
+	}
+	public void remove(int pos) {
+		if(pos == 0)
+			head=head.next;
+		else {
+		Node ptr = head;
+		for(int i=0;i<pos-1;i++) {
+			ptr=ptr.next;
+		}
+		ptr.next = ptr.next.next;
+	}
+	}
+	public void print() {
+		Node ptr = head;
+		while(ptr!=null) {
+			System.out.print(ptr.data +" ");
+			ptr=ptr.next;
+		}
+		System.out.println();
+	}
+	public int size() {
+		Node ptr=head;
+		int count=0;
+		while(ptr!=null) {
+			ptr=ptr.next;
+			count++;
+		}
+		return count;
+	}
+}
+public class SinglyLinkedListDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LinkedList list = new LinkedList();
+		list.insert(0);
+		list.insert(0, 1);
+		list.insert(1,3);
+		list.insert(2, 2);
+		list.insert(1, 0);
+		System.out.println(list.size());
+		list.print();
+		list.insert(0, 7);
+		list.print();
+		list.remove(2);
+		list.print();
+		list.remove(3);
+		list.insert(10);
+		list.print();
+		System.out.println(list.size());
+
+	}
+
+}
