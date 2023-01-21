@@ -1,0 +1,120 @@
+class DoubleLinkedList{
+	Node head;
+	class Node{
+		Node prev;
+		int data ;
+		Node next;
+		Node(int val){
+			data=val;
+		}
+	}
+	DoubleLinkedList(){
+		 head=null;
+	}
+	int count;
+	public void insert(int val) {
+		Node newNode = new Node(val);
+		if(head == null) {
+			head = newNode;
+			head.prev = null;
+			head.next =null;
+			
+		}
+		else {
+			Node ptr = head;
+			while(ptr.next!=null) {
+				ptr=ptr.next;
+			}
+			ptr.next = newNode;
+			newNode.next=null;
+			newNode.prev=ptr;
+			
+		}
+		count++;
+	}
+	public void insert(int pos,int val) {
+		
+		Node newNode = new Node(val);
+		if(head ==null) {
+			head= newNode;
+			
+		}
+		else if(pos ==0) {
+			newNode.prev = null;
+			newNode.next= head;
+			head= newNode;
+		}
+		else {
+			Node ptr = head;
+			for(int i=0;i<pos-1;i++) {
+				ptr =ptr.next;
+			}
+			newNode.next=ptr.next;
+			ptr.next = newNode;
+			newNode.prev=ptr;
+		}
+		count++;
+	}
+	public void remove(int pos) {
+		if(head==null) {
+			System.out.println("No Elements to Remove");
+		    return;
+		}
+		if(pos>count) {
+			System.out.println("Invalid Position");
+			return;
+		}
+		Node ptr =head;
+		if(pos==0) {
+			head=head.next;
+			head.prev =null;
+			count--;
+			return;
+		}
+		for(int i=0;i<pos-1;i++) {
+			ptr=ptr.next;
+		}
+		ptr.next.next.prev =ptr ;
+		ptr.next = ptr.next.next;
+		count--;
+		
+	}
+	public void print(){
+		Node ptr = head;
+		while(ptr!=null) {
+			System.out.print(ptr.data+" ");
+			ptr=ptr.next;
+		}
+		System.out.println();
+	}
+	public int size() {
+		return count;
+	}
+		
+	
+}
+public class DoublyLinkedListDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		DoubleLinkedList list = new DoubleLinkedList();
+		list.remove(2);
+		list.insert(0);
+		list.insert(1);
+		list.insert(3);
+		list.insert(0,2);
+		list.insert(2,4);
+		list.print();
+		System.out.println(list.size());
+		list.remove(3);
+		list.remove(0);
+		list.print();
+		list.insert(10);
+		list.remove(9);
+		list.print();
+		System.out.println(list.size());
+		
+
+	}
+
+}
